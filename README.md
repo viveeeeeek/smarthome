@@ -1,6 +1,6 @@
 # smarthome
 
-A new Flutter project.
+Flutter app to control LED using ESP8266 & Blynk cloud
 
 ## Getting Started
 
