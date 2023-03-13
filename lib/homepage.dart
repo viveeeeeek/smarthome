@@ -114,7 +114,7 @@ class _HomeState extends State<Home> {
                               const BorderRadius.all(Radius.circular(12)),
                           //! ESP8266 Device image goes here
                           child: Image.asset(
-                            'assets/jaiyaxh_pfp.jpg',
+                            'assets/microcontroller.jpg',
                             fit: BoxFit.cover,
                           ),
                         ),
