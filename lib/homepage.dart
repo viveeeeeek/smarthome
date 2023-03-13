@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:app_settings/app_settings.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smarthome/api/secrets.dart';
 import 'package:smarthome/extras/constants.dart';
+import 'package:smarthome/widgets/ifconnected.dart';
+import 'package:smarthome/widgets/popUpDialog.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -72,50 +73,7 @@ class _HomeState extends State<Home> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Connect Your ESP8266 Device to Wi-Fi'),
-          content: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text('Follow these steps to connect your device:'),
-                SizedBox(height: 16),
-                Text('1. Power on your ESP8266 device.'),
-                SizedBox(height: 8),
-                Text(
-                    '2. Go to your Wi-Fi settings and connect to the SmartHome access point.'),
-                SizedBox(height: 8),
-                Text(
-                    '3. Once connected, open a web browser and navigate to 192.168.4.1'),
-                SizedBox(height: 8),
-                Text(
-                    '4. Select your Wi-Fi network from the list of available networks.'),
-                SizedBox(height: 8),
-                Text('5. Enter your Wi-Fi password and click Connect.'),
-                SizedBox(height: 16),
-                Text(
-                    'Note: Your ESP8266 device will automatically restart after it connects to your Wi-Fi network.'),
-                SizedBox(height: 16),
-                Text(
-                    'If you need additional help, please refer to the user manual.'),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Close'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                AppSettings.openWIFISettings();
-              },
-              child: const Text('Open Wi-Fi Settings'),
-            ),
-          ],
-        );
+        return const PopUpDialog();
       },
     );
   }
@@ -282,53 +240,56 @@ class _HomeState extends State<Home> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              height: 400,
+                              height: 250,
                               width: screenSize.width,
                               child: Center(
                                 child: Lottie.asset(
-                                    "assets/connection_lost.json",
-                                    height: 250,
-                                    width: 250),
+                                  "assets/connection_lost.json",
+                                  height: 250,
+                                  width: 250,
+                                ),
                               ),
                             ),
                             const Text(
-                              "Please make sure",
+                              "To get started, please make sure that:",
                               style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black87),
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
                             ),
                             const SizedBox(
                               height: 30,
                             ),
                             const Text(
-                              "1) ESP8266 is connected properly.",
+                              "1. Your ESP8266 device is connected properly.",
                               style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black87),
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black87,
+                              ),
                             ),
                             const SizedBox(
-                              height: 15,
+                              height: 10,
                             ),
                             const Text(
-                              "2) Wifi is configured for ESP8266.",
+                              "2. Your ESP8266 device is configured to connect to your Wi-Fi network.",
                               style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black87),
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black87,
+                              ),
                             ),
                             const SizedBox(
                               height: 30,
                             ),
-                            //! Configure wifi button
                             Center(
                               child: SizedBox(
                                 width: screenSize.width / 1.5,
                                 height: 45,
                                 child: ElevatedButton(
                                   onPressed: _configureWifi,
-                                  child: Text('Configure Wi-Fi'),
+                                  child: const Text('Configure Wi-Fi'),
                                 ),
                               ),
                             ),
@@ -344,24 +305,5 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
-  }
-}
-
-//! IF Connected then connectedWidget else disconnectedWidget
-class IfConnected extends StatelessWidget {
-  const IfConnected({
-    Key? key,
-    required this.isConnected,
-    required this.connectedWidget,
-    required this.disconnectedWidget,
-  }) : super(key: key);
-
-  final bool isConnected;
-  final Widget connectedWidget;
-  final Widget disconnectedWidget;
-
-  @override
-  Widget build(BuildContext context) {
-    return isConnected ? connectedWidget : disconnectedWidget;
   }
 }
