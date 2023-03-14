@@ -186,6 +186,7 @@ class _HomeState extends State<Home> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      //! Main UI
                       IfConnected(
                         isConnected: _isDeviceConnected,
                         connectedWidget: Padding(
@@ -195,36 +196,51 @@ class _HomeState extends State<Home> {
                             children: [
                               Center(
                                 child: Container(
-                                  height: 200,
                                   width: 200,
                                   decoration: const BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(25)),
-                                      color: Colors.white),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(25)),
+                                    color: Colors.white,
+                                  ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: Column(
                                       children: [
-                                        Icon(
-                                          _isSwitched == true
-                                              ? Icons.lightbulb
-                                              : Icons.lightbulb_outline,
-                                          size: 100,
-                                          color: _isSwitched == true
-                                              ? Colors.yellow
-                                              : Colors.black,
+                                        const Text(
+                                          'LED 1',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                        const Expanded(child: SizedBox()),
+                                        SizedBox(height: 20),
+                                        AnimatedSwitcher(
+                                          duration: Duration(milliseconds: 500),
+                                          child: Icon(
+                                            _isSwitched
+                                                ? Icons.lightbulb
+                                                : Icons.lightbulb_outline,
+                                            key: ValueKey<bool>(_isSwitched),
+                                            size: 100,
+                                            color: _isSwitched
+                                                ? Colors.yellow
+                                                : Colors.black,
+                                          ),
+                                        ),
+                                        SizedBox(height: 20),
                                         //! Switch on off led
-                                        Center(
-                                          child: Switch(
-                                            value: _isSwitched,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                _isSwitched = value;
-                                                _toggleLED(value);
-                                              });
-                                            },
+                                        AnimatedSwitcher(
+                                          duration: Duration(milliseconds: 500),
+                                          child: Center(
+                                            child: Switch(
+                                              value: _isSwitched,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  _isSwitched = value;
+                                                  _toggleLED(value);
+                                                });
+                                              },
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -235,65 +251,78 @@ class _HomeState extends State<Home> {
                             ],
                           ),
                         ),
+
                         //! Connection lost / Configure ESP help
-                        disconnectedWidget: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 250,
-                              width: screenSize.width,
-                              child: Center(
-                                child: Lottie.asset(
-                                  "assets/connection_lost.json",
+                        disconnectedWidget: Container(
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(22))),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
                                   height: 250,
-                                  width: 250,
+                                  width: screenSize.width,
+                                  child: Center(
+                                    child: Lottie.asset(
+                                      "assets/connection_lost.json",
+                                      height: 250,
+                                      width: 250,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            const Text(
-                              "To get started, please make sure that:",
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            const Text(
-                              "1. Your ESP8266 device is connected properly.",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black87,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const Text(
-                              "2. Your ESP8266 device is configured to connect to your Wi-Fi network.",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black87,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            Center(
-                              child: SizedBox(
-                                width: screenSize.width / 1.5,
-                                height: 45,
-                                child: ElevatedButton(
-                                  onPressed: _configureWifi,
-                                  child: const Text('Configure Wi-Fi'),
+                                const Text(
+                                  "To get started, please make sure that:",
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black87,
+                                  ),
                                 ),
-                              ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                const Text(
+                                  "1. Your ESP8266 device is connected properly.",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text(
+                                  "2. Your ESP8266 device is configured to connect to your Wi-Fi network.",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                Center(
+                                  child: SizedBox(
+                                    width: screenSize.width / 1.5,
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: _configureWifi,
+                                      child: const Text('Configure Wi-Fi'),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 22,
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ],
