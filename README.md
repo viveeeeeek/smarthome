@@ -12,10 +12,14 @@ This project can be upscaled to control all home appliances, making it an excell
 🔸 Update the Blynk API token in the app code <br>
 🔸 Run the app on your device <br>
 
-### 👥 Contribution 
-Contributions are welcome 🎉. Please create a new branch, make changes, and submit a pull request. We appreciate your contributions.
+
+
+
+
 
 ### 📷 App Screenshot and Working Demo 
+
+https://user-images.githubusercontent.com/64553247/229155523-46b03917-5b00-4f97-a39c-d6881ec7d82e.mp4
 <table>
   <tr>
     <td><img src="https://user-images.githubusercontent.com/64553247/224785472-05e42b9f-df11-4860-bd1a-fd7bf32533f3.jpg" alt="LED ON SMARTHOME APP" width="200"></td>
@@ -28,6 +32,10 @@ Contributions are welcome 🎉. Please create a new branch, make changes, and su
 
   </tr>
 </table>
+
+
+### 👥 Contribution 
+Contributions are welcome 🎉. Please create a new branch, make changes, and submit a pull request. We appreciate your contributions.
 
 ### ⚠️ Note:
 #### This project is for personal home automation purposes only. We are not responsible for any damage caused by using this app or modifying the ESP8266 firmware code. Use it at your own risk.
