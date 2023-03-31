@@ -1,5 +1,16 @@
+<!-- 
+<h3 align="center">
+	<img src="android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" width="100" alt="Logo"/><br/>
+	Smarthome
+</h3>
+
+<br>
+ -->
 # 🏠 SmartHome 🌟
 ## Personal Home Automation App with Flutter and Blynk API 🚀
+
+
+
 
 This is a personal home automation app developed using Flutter and Blynk API. The app allows the user to control an LED connected to an ESP8266 board. 🌟 The ESP8266 firmware code is stored in a separate repository, and the user can connect their lights, TV, plugs, and other devices to the ESP8266 to control them through the app.
 
